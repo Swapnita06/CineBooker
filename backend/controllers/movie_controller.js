@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken'
 import Movie from '../models/Movie.js';
+import mongoose from 'mongoose';
+import Admin from '../models/Admin.js';
 export const addMovie = async(req,res)=>{
 
     const extractedToken = req.headers.authorization.split(" ")[1]; 
@@ -38,7 +40,13 @@ try{
         admin:adminId,
         posterUrl,
     });
-    movie = await movie.save();
+const session = await mongoose.startSession();
+const adminUser = await Admin.findById(adminId);
+session.startTransaction();
+await movie.save({session});
+adminUser.addedMovies.push(movie);
+await adminUser.save({session});
+await session.commitTransaction();
 }catch(err){
     return console.log(err);
 }
@@ -76,5 +84,5 @@ export const getMovieById = async(req,res,next)=>{
             return res.status(404).json({message:"Movie not found"});
             }
             return res.status(200).json({movie});
-            
+
 }

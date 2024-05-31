@@ -73,3 +73,15 @@ try{
                    
 }
 
+export const getAdmins = async(req,res,next)=>{
+    let admins;
+    try{
+        admins = await Admin.find();
+    }catch(err){
+        return console.log(err);
+    }
+    if(!admins){
+        return res.status(404).json({message:"No Admins Found"});
+        }
+        return res.status(200).json({admins});
+}
