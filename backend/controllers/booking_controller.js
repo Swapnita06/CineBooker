@@ -59,4 +59,46 @@ export const getBookingsById = async(req,res,next)=>{
     catch(err){
         return console.log(err);
     }
+    if(!booking){
+        return res.status(500).json({message:" Unexpected Error"});
+    }
+    return res.status(200).json({ booking});
+};
+
+export const deleteBooking = async(req,res,next)=>{
+    const id = req.params.id;
+    let booking;
+    try{
+        booking = await Bookings.findByIdAndDelete(id).populate("user movie");
+        console.log(booking);
+        const session = await mongoose.startSession();
+        session.startTransaction();
+       await booking.user.bookings.pull(booking);
+        booking.movie.bookings.pull(booking);
+        await booking.movie .save({session});
+        await booking.user.save({session});
+session.commitTransaction();
+  }
+catch(err){
+    return console.log(err);
+}
+if(!booking){
+    return res.status(500).json({message:"Unable to Delete"});
+    }
+    return res.status(200).json({message:"Successfully Deleted"});
+};
+
+export const getBookingOfUser = async(req,res,next)=>{
+    const id = req.params.id;
+    let bookings;
+    try{
+        bookings = await Bookings.find({user:id});
+    }
+    catch(err){
+        return console.log(err);
+    }
+    if(!bookings){
+        return res.status(500).json({message:"Unable to Bookings"});
+    }
+    return res.status(200).json({bookings});
 }
