@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import cors from 'cors';
 import userRouter from "./routes/user_routes.js";
 import adminRouter from "./routes/admin_routes.js";
 import movieRouter from "./routes/movie_routes.js";
@@ -8,6 +9,7 @@ import bookingsRouter from "./routes/booking_routes.js";
 dotenv.config();
 const app= express();
 
+app.use(cors());
 app.use(express.json());
 app.use("/user",userRouter);
 app.use("/admin",adminRouter);
