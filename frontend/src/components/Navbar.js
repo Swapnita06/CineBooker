@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AppBar, Autocomplete, Box, Tab, Tabs, TextField, Toolbar } from '@mui/material'
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { getAllMovies } from '../api-helpers/api-helpers';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -27,7 +28,7 @@ useEffect(() => {
 }, []);
 
   return (
-<AppBar sx ={{bgcolor:"#070F2B"}}>
+<AppBar position='sticky' sx ={{bgcolor:"#070F2B"}}>
     <Toolbar>
         <Box width={'20%'}>
 <MovieCreationIcon/>
@@ -45,9 +46,12 @@ useEffect(() => {
         </Box>
         <Box display={'flex'}>
 <Tabs textColor='inherit' indicatorColor='white' value={value} onChange={(e,val)=>setValue(val)}>
-<Tab label="Movies"/>
-    <Tab label="Admin"/>
-    <Tab label="Auth"/>
+<Tab  component={Link} to="/movies" label="Movies" />
+<Tab component={Link} to="/admin" label="Admin" />
+<Tab component={Link} to="/auth" label="Auth" />
+
+
+
 </Tabs>
         </Box>
     </Toolbar>
