@@ -28,7 +28,7 @@ useEffect(() => {
 }, []);
 
   return (
-<AppBar position='sticky' sx ={{bgcolor:"#070F2B"}}>
+<AppBar position="sticky" sx ={{bgcolor:"#070F2B",zIndex:'100'}}>
     <Toolbar>
         <Box width={'20%'}>
 <MovieCreationIcon/>
@@ -49,9 +49,6 @@ useEffect(() => {
 <Tab  component={Link} to="/movies" label="Movies" />
 <Tab component={Link} to="/admin" label="Admin" />
 <Tab component={Link} to="/auth" label="Auth" />
-
-
-
 </Tabs>
         </Box>
     </Toolbar>
