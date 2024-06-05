@@ -48,7 +48,8 @@ useEffect(() => {
 <Tabs textColor='inherit' indicatorColor='white' value={value} onChange={(e,val)=>setValue(val)}>
 <Tab  component={Link} to="/movies" label="Movies" />
 <Tab component={Link} to="/admin" label="Admin" />
-<Tab component={Link} to="/auth" label="Auth" />
+<Tab component={Link} to="/auth" label="Auth" /> 
+
 </Tabs>
         </Box>
     </Toolbar>
