@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Autocomplete, Box, TextField, Toolbar } from '@mui/material';
+import { AppBar, Box, InputBase, Toolbar, IconButton } from '@mui/material';
 import MovieCreationIcon from '@mui/icons-material/MovieCreation';
 import { Link } from 'react-router-dom';
 import { getAllMovies } from '../api-helpers/api-helpers';
 
-const Navbar = () => {
+const Header = () => {
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         getAllMovies()
@@ -19,24 +20,31 @@ const Navbar = () => {
             .catch((err) => console.error("Error fetching movies:", err));
     }, []);
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredMovies = movies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <AppBar position="sticky" sx={{ bgcolor: "#070F2B"}}>
+        <AppBar position="sticky" style={{ backgroundColor: "#070F2B", zIndex: '100' }}>
             <Toolbar>
                 <Box width={'20%'}>
-                    <MovieCreationIcon />
+                    <IconButton edge="start" color="inherit" aria-label="menu">
+                        <MovieCreationIcon />
+                    </IconButton>
                 </Box>
-                <Box width={'30%'} margin={"auto"}>
-                    <Autocomplete
-                        freeSolo
-                        options={movies.map((option) => option.title)}
-                        renderInput={(params) => (
-                            <TextField sx={{ input: { color: "white" } }}
-                                variant='standard' {...params}
-                                placeholder="Search Movies" />
-                        )}
+                <Box width={'30%'} margin="auto">
+                    <InputBase
+                        placeholder="Search Movies"
+                        inputProps={{ 'aria-label': 'search movies' }}
+                        style={{ color: 'white', width: '100%' }}
+                        onChange={handleSearchChange}
                     />
                 </Box>
-                <Box display={'flex'}>
+                <Box display="flex">
                     <div>
                         <Link to="/movies" style={{ color: 'inherit', textDecoration: 'none', padding: '15px' }}>Movies</Link>
                         <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', padding: '15px' }}>Admin</Link>
@@ -48,4 +56,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default Header;
