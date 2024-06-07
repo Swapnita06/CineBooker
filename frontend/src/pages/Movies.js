@@ -1,10 +1,11 @@
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 const Movies = () => {
   return (
-    <div>
-      <h1>MOVIES</h1>
-    </div>
+    <Box margin={'auto'} marginTop={4}>
+   <Typography variant='h3' padding={2} textAlign={"center"}>MOVIES</Typography>
+    </Box>
   )
 }
 
