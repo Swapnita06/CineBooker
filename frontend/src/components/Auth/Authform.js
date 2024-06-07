@@ -1,17 +1,43 @@
-import { Box, Button, Dialog, FormLabel, TextField, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, Dialog, FormLabel, IconButton, TextField, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import CloseIcon from '@mui/icons-material/Close';
 
 const labelStyle={mt:1,mb:1}
 
 const Authform = () => {
+
+const[inputs,setInputs]= useState({
+    name:"",email:"",password:"",
+});
+
+const [isSignup,setIsSignup]=useState(false);
+ 
+const handleChange=(e)=>{
+    setInputs((prevState)=>({
+...prevState,
+[e.target.name]:e.target.value,
+
+    }))
+};
+
+const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(inputs);
+};
+
   return (
-    <Dialog open={true}>
+    <Dialog PaperProps={{style:{borderRadius:20}}} open={true}>
+        <Box sx ={{m1:"auto",padding:1}}>
+<IconButton>
+<CloseIcon/>
+</IconButton>
+        </Box>
         <Typography 
         variant='h3' textAlign={"center"}
         >
-            Login
+           {isSignup? "Signup":"Login"} 
         </Typography>
-        <form>
+        <form onSubmit={handleSubmit}>
             <Box display={'flex'} justifyContent={'center'} flexDirection={"column"}
             width={400}
             margin={"auto"}
@@ -19,22 +45,44 @@ const Authform = () => {
             padding={6}
             >
 
+{ isSignup && ( <>
+{ " "}
 <FormLabel sx ={labelStyle}>Username</FormLabel>
-<TextField margin='normal' variant='standard' type='text' name='name'/>
-
+<TextField
+value={inputs.name} 
+onChange={(handleChange)}
+margin='normal'
+ variant='standard' 
+ type='text' 
+ name='name'/>
+</>)}
 
 <FormLabel sx ={labelStyle}>Email</FormLabel>
-<TextField margin='normal' variant='standard' type='email' name='email'/>
+<TextField
+value={inputs.email} 
+onChange={(handleChange)}
+ margin='normal' 
+ variant='standard'
+  type='email' 
+  name='email'/>
 
 <FormLabel>Password</FormLabel>
-<TextField margin='normal' variant='standard' type='password' name='password'/>
+<TextField 
+value={inputs.password} 
+onChange={(handleChange)}
+margin='normal' 
+variant='standard'
+ type='password'
+  name='password'/>
 
 <Button sx={{mt:2,borderRadius:10,bgcolor:'#2b2d42'}} type='submit' fullWidth
 variant='contained'
->LOGIN</Button>
+>{isSignup? "Singup":"Login"} </Button>
 
-<Button sx={{mt:2,borderRadius:10}} fullWidth
->LOGIN</Button>
+<Button onClick={()=>setIsSignup(!isSignup)} sx={{mt:2,borderRadius:10}} fullWidth
+>
+   {isSignup? "Login":"Signup"} 
+</Button>
             </Box>
         </form>
     </Dialog>
