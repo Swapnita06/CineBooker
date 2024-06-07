@@ -2,17 +2,18 @@ import React from 'react'
 
 import { BrowserRouter,Route, Routes } from 'react-router-dom'
 import Homepage from './components/Homepage'
-import Movies from './components/Movies/Movies'
-import Admin from './components/Admin/Admin'
-import Auth from './components/Auth/Auth'
+import Movies from './pages/Movies'
+import Admin from './pages/Admin'
+import Auth from './pages/Auth'
 import Nav from './components/Nav'
+import Newnavbar from './components/Newnavbar'
 
 const App = () => {
   return (
     
     <div>
       <BrowserRouter>
-      <Nav/>
+      <Newnavbar/>
       <section>
         <Routes>
           <Route path ="/" element ={Homepage}/>
