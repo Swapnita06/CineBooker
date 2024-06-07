@@ -18,14 +18,15 @@
   }
   
   .search-bar {
-    width: 30%;
+    width: 35%;
     margin: auto;
     position: relative;
+   
   }
   
   .search-bar input {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     background: none;
     border: none;
     border-bottom: 1px solid white;

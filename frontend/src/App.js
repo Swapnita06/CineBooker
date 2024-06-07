@@ -7,21 +7,20 @@ import Admin from './pages/Admin'
 import Auth from './pages/Auth'
 import Nav from './components/Nav'
 import Newnavbar from './components/Newnavbar'
+import Navbar from './components/Navbar'
 
 const App = () => {
   return (
     
     <div>
       <BrowserRouter>
-      <Newnavbar/>
-      <section>
+      <Navbar/>
         <Routes>
-          <Route path ="/" element ={Homepage}/>
-          <Route path ="/movies" element ={Movies}/>
-          <Route path ="/admin" element ={Admin}/>
-          <Route path ="/auth" element ={Auth}/>
+          <Route path ="/" element ={<Homepage/>}/>
+          <Route path ="/movies" element ={<Movies/>}/>
+          <Route path ="/admin" element ={<Admin/>}/>
+          <Route path ="/auth" element ={<Auth/>}/>
         </Routes>
-        </section>
         </BrowserRouter>
     </div>
    
