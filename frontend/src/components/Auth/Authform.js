@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const labelStyle={mt:1,mb:1}
 
-const Authform = () => {
+const Authform = ({onSubmit, isAdmin}) => {
 
 const[inputs,setInputs]= useState({
     name:"",email:"",password:"",
@@ -22,7 +22,7 @@ const handleChange=(e)=>{
 
 const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log(inputs);
+   onSubmit({inputs,signup: isAdmin?false:isSignup});
 };
 
   return (
@@ -45,7 +45,7 @@ const handleSubmit=(e)=>{
             padding={6}
             >
 
-{ isSignup && ( <>
+{!isAdmin && isSignup && ( <>
 { " "}
 <FormLabel sx ={labelStyle}>Username</FormLabel>
 <TextField
@@ -79,10 +79,12 @@ variant='standard'
 variant='contained'
 >{isSignup? "Singup":"Login"} </Button>
 
+{!isAdmin&&
 <Button onClick={()=>setIsSignup(!isSignup)} sx={{mt:2,borderRadius:10}} fullWidth
 >
    {isSignup? "Login":"Signup"} 
 </Button>
+}
             </Box>
         </form>
     </Dialog>

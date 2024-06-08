@@ -8,8 +8,15 @@ import Auth from './pages/Auth'
 import Nav from './components/Nav'
 import Newnavbar from './components/Newnavbar'
 import Navbar from './components/Navbar'
+import { useSelector } from 'react-redux'
 
 const App = () => {
+
+  const isAdminLoggedIn = useSelector((state)=>state.admin.isLoggedIn);
+  const isUserLoggedIn = useSelector((state)=>state.user.isLoggedIn);
+console.log("isAdminLoggedIn",isAdminLoggedIn);
+console.log("isUserLoggedIn",isUserLoggedIn);
+
   return (
     
     <div>
