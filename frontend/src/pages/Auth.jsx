@@ -5,15 +5,32 @@ import { useDispatch } from 'react-redux';
 import { userActions } from '../store';
 
 
+// const Auth = () => {
+// const dispatch = useDispatch()
+//  const getData =(data)=>{
+//  console.log(data);
+//  sendUserAuthRequest(data.inputs,data.signup)
+//  .then((res)=>console.log(res)
+// .then(()=>dispatch(userActions.login()))
+// ).catch((err)=>console.log(err));
+//   };
+  
+
 const Auth = () => {
-const dispatch = useDispatch()
- const getData =(data)=>{
- console.log(data);
- sendUserAuthRequest(data.inputs,data.signup)
- .then((res)=>console.log(res)
-.then(()=>dispatch(userActions.login()))
-).catch((err)=>console.log(err));
+  const dispatch = useDispatch();
+
+  const getData = (data) => {
+    console.log(data);
+    sendUserAuthRequest(data.inputs, data.signup)
+      .then((res) => {
+        if (res) {
+          console.log(res);
+          dispatch(userActions.login());
+        }
+      })
+      .catch((err) => console.log(err));
   };
+  
   return (
     <div>
       <Authform onSubmit ={getData} isAdmin={false}/>
