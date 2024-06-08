@@ -4,6 +4,7 @@ import { sendUserAuthRequest } from '../api-helpers/api-helpers';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../store';
 
+
 const Auth = () => {
 const dispatch = useDispatch()
  const getData =(data)=>{
