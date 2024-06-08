@@ -130,3 +130,48 @@ if(res.status!==200){
 const resData = await res.data;
 return resData;
 }
+
+
+// export const newBooking = async(data)=>{
+//   const res = await axios
+//   .post("http://localhost:5000/booking",{
+//     movie: data.movie,
+//     seatNumber: data.seatNumber,
+//     date: data.date,
+//     user:localStorage.getItem("userId"),
+//   })
+//   .catch((err)=>console.log(err));
+
+//   if(res.status!==201){
+//     return console.log("Unexpected Error");
+//   }
+//   const resData = await res.data;
+//   return resData;
+// }
+
+export const newBooking = async (data) => {
+  try {
+    const res = await axios.post("http://localhost:5000/booking", {
+      movie: data.movie,
+      seatNumber: data.seatNumber,
+      date: data.date,
+      user: localStorage.getItem("userId"),
+    });
+
+    if (res.status !== 201) {
+      return console.log("Unexpected Error");
+    }
+
+    return res.data;
+  } catch (err) {
+    if (err.response) {
+      console.log("Error response data:", err.response.data);
+      console.log("Error response status:", err.response.status);
+      console.log("Error response headers:", err.response.headers);
+    } else if (err.request) {
+      console.log("Error request data:", err.request);
+    } else {
+      console.log('Error', err.message);
+    }
+  }
+};
