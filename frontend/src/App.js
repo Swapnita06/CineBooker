@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { adminActions, userActions } from './store'
 import Booking from './pages/Booking'
+import Profile from './pages/Profile'
 
 const App = () => {
 
@@ -38,6 +39,7 @@ dispatch(adminActions.login());
           <Route path ="/movies" element ={<Movies/>}/>
           <Route path ="/admin" element ={<Admin/>}/>
           <Route path ="/auth" element ={<Auth/>}/>
+          <Route path ="/user" element ={<Profile/>}/>
           <Route path="/booking/:id" element={<Booking/>}/>
         </Routes>
         </BrowserRouter>
