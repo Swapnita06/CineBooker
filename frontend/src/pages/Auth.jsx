@@ -18,16 +18,20 @@ import { userActions } from '../store';
 
 const Auth = () => {
   const dispatch = useDispatch();
-
+const onResReceived = (data)=>{
+  console.log(data);
+  if (data && data.user && data.user._id) {
+  dispatch(userActions.login());
+  localStorage.setItem("userId",data.user._id);
+}
+else {
+  console.error('Invalid response data:', data); // Log if _id is missing
+}
+};
   const getData = (data) => {
     console.log(data);
     sendUserAuthRequest(data.inputs, data.signup)
-      .then((res) => {
-        if (res) {
-          console.log(res);
-          dispatch(userActions.login());
-        }
-      })
+     .then(onResReceived)
       .catch((err) => console.log(err));
   };
   

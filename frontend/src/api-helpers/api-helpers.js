@@ -84,8 +84,8 @@ export const sendUserAuthRequest = async (data, signup) => {
     if (res.status !== 200 && res.status !== 201) {
       console.log("Unexpected error occurred");
     }
-    const resData = await res.data;
-    return resData;
+    //const resData = await res.data;
+    return res.data;
   } catch (err) {
     if (err.response) {
         // Log details about the response if available
@@ -105,7 +105,7 @@ export const sendUserAuthRequest = async (data, signup) => {
 // Function to send admin authentication request
 export const sendAdminAuthRequest = async (data) => {
   try {
-    const res = await axios.post("/admin/login", {
+    const res = await axios.post("http://localhost:5000/admin/login", {
       email: data.email,
       password: data.password,
     });
