@@ -6,6 +6,7 @@ const MovieItem = ({title,releaseDate,posterUrl,id}) => {
 
   if (!id) {
     console.error('Movie ID is undefined', { title, releaseDate, posterUrl, id });
+   return null;
   }
 
   return (

@@ -36,10 +36,10 @@ const Movies = () => {
       display={'flex'} 
       justifyContent="flex-start" flexWrap={"wrap"}
       >
-{movies && movies.map((movie,index)=>(
+{movies && movies.map((movie/*,index*/)=>(
  
 <MovieItem
- key={index} 
+ key={movie._id} 
  id={movie._id} 
  posterUrl={movie.posterUrl}
   releaseDate={movie.releaseDate} 

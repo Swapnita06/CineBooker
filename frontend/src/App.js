@@ -10,6 +10,7 @@ import Newnavbar from './components/Newnavbar'
 import Navbar from './components/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { adminActions, userActions } from './store'
+import Booking from './pages/Booking'
 
 const App = () => {
 
@@ -37,6 +38,7 @@ dispatch(adminActions.login());
           <Route path ="/movies" element ={<Movies/>}/>
           <Route path ="/admin" element ={<Admin/>}/>
           <Route path ="/auth" element ={<Auth/>}/>
+          <Route path="/booking/:id" element={<Booking/>}/>
         </Routes>
         </BrowserRouter>
     </div>
