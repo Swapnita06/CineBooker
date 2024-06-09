@@ -191,19 +191,6 @@ export const getUserBooking = async()=>{
   
 };
 
-// export const getUserDetails = async (userId) => {
-//   try {
-//     const res = await axios.get(`http://localhost:5000/user/${userId}`);
-//     if (res.status !== 200) {
-//       throw new Error('Failed to fetch user details');
-//     }
-//     return res.data;
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// };
-
 
 export const  deleteBooking = async(id)=>{
   const res = await axios
@@ -229,4 +216,30 @@ export const getUserDetails = async()=>{
   }
   const resData = await res.data;
   return resData;
+}
+
+export const addMovie = async(data)=>{
+  const res = await axios
+  .post("http://localhost:5000/movie",{
+    title:data.title,
+    description: data.description,
+    releaseDate: data.releaseDate,
+posterUrl:data.posterUrl,
+featured: data.featured,
+actors:data.featured,
+actors:data.actors,
+admin:localStorage.getItem("adminId"),
+  },{
+    headers:{
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+
+    },
+ }
+).catch(err=>console.log(err));
+
+if(res.status!==201){
+  return console.log("Unexpected Error");
+}
+const resData = await res.data;
+return resData;
 }
