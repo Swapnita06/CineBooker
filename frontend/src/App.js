@@ -13,6 +13,7 @@ import { adminActions, userActions } from './store'
 import Booking from './pages/Booking'
 import Profile from './pages/Profile'
 import AddMovie from './components/Movies/AddMovie'
+import AdminProfile from './pages/AdminProfile'
 
 const App = () => {
 
@@ -42,6 +43,7 @@ dispatch(adminActions.login());
           <Route path ="/auth" element ={<Auth/>}/>
           <Route path ="/user" element ={<Profile/>}/>
           <Route path ="/add" element ={<AddMovie/>}/>
+          <Route path ="/user-admin" element ={<AdminProfile/>}/>
           <Route path="/booking/:id" element={<Booking/>}/>
         </Routes>
         </BrowserRouter>

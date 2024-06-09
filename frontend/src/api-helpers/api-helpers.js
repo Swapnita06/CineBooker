@@ -243,3 +243,33 @@ if(res.status!==201){
 const resData = await res.data;
 return resData;
 }
+
+
+// export const getAdminById = async()=>{
+//   const adminId = localStorage.getItem("adminId");
+//   const res = await axios
+//   .get(`http://localhost:5000/admin/${adminId}`)
+//   .catch((err)=>console.log(err));
+
+//   if(res.status!==200){
+//     return console.log("Unexpected Error");
+//   }
+//   const resData = await res.data;
+//   return resData;
+// }/
+
+export const getAdminById = async () => {
+  const adminId = localStorage.getItem("adminId");
+  try {
+      const res = await axios.get(`http://localhost:5000/admin/${adminId}`);
+      if (res.status !== 200) {
+          console.log("Unexpected Error");
+          return; // Return early if there's an error
+      }
+      const resData = await res.data;
+      return resData;
+  } catch (err) {
+      console.log(err);
+  }
+};
+
