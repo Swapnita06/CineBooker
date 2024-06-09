@@ -96,7 +96,7 @@ sx={{margin:1,
   textAlign:"left"
 }}
 >
-Movie: {booking.movie.title}
+Movie: {booking.title}
 </ListItemText>
 
 <ListItemText

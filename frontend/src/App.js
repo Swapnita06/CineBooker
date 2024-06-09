@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { adminActions, userActions } from './store'
 import Booking from './pages/Booking'
 import Profile from './pages/Profile'
+import AddMovie from './components/Movies/AddMovie'
 
 const App = () => {
 
@@ -40,6 +41,7 @@ dispatch(adminActions.login());
           <Route path ="/admin" element ={<Admin/>}/>
           <Route path ="/auth" element ={<Auth/>}/>
           <Route path ="/user" element ={<Profile/>}/>
+          <Route path ="/add" element ={<AddMovie/>}/>
           <Route path="/booking/:id" element={<Booking/>}/>
         </Routes>
         </BrowserRouter>
