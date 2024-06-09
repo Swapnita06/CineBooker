@@ -191,6 +191,42 @@ export const getUserBooking = async()=>{
   
 };
 
+// export const getUserDetails = async (userId) => {
+//   try {
+//     const res = await axios.get(`http://localhost:5000/user/${userId}`);
+//     if (res.status !== 200) {
+//       throw new Error('Failed to fetch user details');
+//     }
+//     return res.data;
+//   } catch (error) {
+//     console.log(error);
+//     throw error;
+//   }
+// };
 
 
+export const  deleteBooking = async(id)=>{
+  const res = await axios
+  .delete(`http://localhost:5000/booking/${id}`)
+  .catch((err)=>console.log(err));
 
+  if(res.status!==200){
+    return console.log("Unexpected Error");
+  }
+  const resData = await res.data;
+  return resData;
+  
+}
+
+export const getUserDetails = async()=>{
+  const id = localStorage.getItem("userId");
+  const res = await axios
+  .get(`http://localhost:5000/user/${id}`)
+  .catch((err)=>console.log(err));
+
+  if(res.status!==200){
+    return console.log("Unexpected Error");
+  }
+  const resData = await res.data;
+  return resData;
+}
